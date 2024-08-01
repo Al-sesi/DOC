@@ -1,0 +1,76 @@
+{% load static %}
+{% load bootstrap5 %}
+{% load model_tags %}
+{% load django_htmx %}
+{% block html %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+{% block head %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% block more_meta_tags %}
+    {% endblock %}
+    <title>{% block page_title %}{% endblock page_title %}</title>
+    <link rel="icon" href="{% static 'images/logos/favicon.ico' %}" type="image/x-icon">
+    <link href="{% static 'assets/dashboard/css/main.css' %}" rel="stylesheet"/>
+    
+    <link href="{% static 'assets/remix/fonts/remixicon.css' %}" rel="stylesheet"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet">
+
+    {% bootstrap_css %}
+    {% block extra_style %}
+    {% endblock extra_style %}
+</head>
+{% endblock head %}
+{% block body %}
+<body>
+  
+  
+
+  {% include 'wrapper/header.html' %}
+  {% include 'wrapper/sidebar.html' %}
+  <main>
+    <div class="in-container in-offset-md-1" style="margin-left: 6rem; margin-top: 6rem; padding-right: 4rem;">
+      {% bootstrap_messages %}
+      
+          {% block content %}
+  
+          {% endblock content %}
+<!-- 
+          <div class="create-form" id="create-form">
+      
+          </div> -->
+        {% block in_page_scripts %}
+        {% endblock in_page_scripts %}
+
+      </div>
+  </main>
+  
+  
+
+    {% block script %}
+    <script src="{% static 'assets/js/jQuery.js' %}"></script>
+    <script src="{% static 'assets/js/htmx.js' %}"></script>
+    {% django_htmx_script %}
+
+    {% bootstrap_javascript %}
+    <!-- <script src="{% static 'assets/dashboard/js/main.js' %}"></script> -->
+    <script src="{% static 'assets/js/htmx_functions.js' %}"></script>
+    
+    
+    {% block extra_script %}
+    {% endblock extra_script %}
+    {% endblock script %}
+</body>
+{% endblock body %}
+</html>
+{% endblock html %}
